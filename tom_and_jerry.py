@@ -1,6 +1,7 @@
 import pygame
 from pygame.locals import *
 import random
+import re
 
 size = width, height = (1200, 800)  # size of the screen
 road_w = int(width / 1.6)  # width of the road
@@ -88,8 +89,14 @@ if score_value >= 50:  # set minimal score to be saved to record list
     name = input("Enter your name to save your score to record base: ")  # ask for name to save
     infile = open("records.txt", "a")  # open file in append mode
     infile.write(f"\n{name}:{score_value}")  # write file with given name and score
-    infile.close()  # close file
     print("Score successfully saved in database!")  # print confirmation
-
+    infile = open('records.txt', 'r')   # open in read mode
+    high = 0    # set lowest possible value
+    for line in infile:  # go through all lines
+        line = re.sub('^.*:', '', line).strip('\n')  # regex to match ":" sign and then remove "\n" sign
+        if int(line) > high:    # compare
+            high = int(line)    # set new high score to highest value
+    infile.close()  # close file
+    print(f'Current high score: {high}')  # display highest score
 
 

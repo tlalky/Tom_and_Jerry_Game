@@ -1,6 +1,6 @@
-Name:Score
 Tom:92
 Mark:89
 Jessica:87
 Jonas:76
 Noah:85
+Daria:94
